@@ -1,0 +1,27 @@
+version: '3.3'
+
+services:
+  web:
+    image: nginx
+    restart: always
+    volumes:
+    - ./nginx/config:/etc/nginx/conf.d
+    ports:
+    - "80:80"
+    depends_on:
+    - api
+  app:
+    image: node:9.11.1
+    restart: always
+    environment:
+      - HOST=0.0.0.0
+      - PORT=3000
+    volumes:
+    - ./app:/usr/app
+    command: /bin/bash -c "cd /usr/app && npm i && npm run build && npm start"
+  api:
+    image: node:9.11.1
+    restart: always
+    volumes:
+    - ./api:/usr/api
+    command: /bin/bash -c "cd /usr/app && npm i && npm start"

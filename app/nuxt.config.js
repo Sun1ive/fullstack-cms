@@ -27,12 +27,12 @@ module.exports = {
   /*
   ** Customize the progress-bar color
   */
-  loading: { color: '#FFFFFF' },
+  loading: { color: 'lightgreen' },
 
   /*
   ** Global CSS
   */
-  css: ['vuetify/src/stylus/main.styl'],
+  css: ['vuetify/src/stylus/main.styl', './styles/main.css'],
 
   /*
   ** Plugins to load before mounting the App
