@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon src/index.j",
+    "dev": "nodemon dev.js",
     "build": "rm -rf ./dist && babel -d ./dist ./src -s && node dist/index.js"
   },
   "keywords": [],
