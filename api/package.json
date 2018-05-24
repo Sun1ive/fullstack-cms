@@ -1,0 +1,28 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon src/index.j",
+    "build": "rm -rf ./dist && babel -d ./dist ./src -s && node dist/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.4",
+    "fastify": "^1.5.0",
+    "mongoose": "^5.1.2",
+    "morgan": "^1.9.0",
+    "nodemon": "^1.17.5"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.0.0-beta.47",
+    "@babel/core": "^7.0.0-beta.47",
+    "@babel/polyfill": "^7.0.0-beta.47",
+    "@babel/preset-env": "^7.0.0-beta.47",
+    "@babel/preset-stage-3": "^7.0.0-beta.47",
+    "@babel/register": "^7.0.0-beta.47"
+  }
+}
