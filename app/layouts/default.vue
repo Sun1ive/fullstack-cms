@@ -1,5 +1,6 @@
 <template>
   <v-app>
+    <Toolbar />
     <v-content>
       <v-container fluid fill-height>
         <nuxt />
@@ -9,9 +10,11 @@
 </template>
 
 <script>
-export default {
+import Toolbar from '../components/Toolbar.vue';
 
-}
+export default {
+  components: { Toolbar },
+};
 </script>
 
 <style>
