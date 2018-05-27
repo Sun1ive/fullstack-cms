@@ -15,6 +15,8 @@ app.use(morgan('dev'));
 app.use(responseTime());
 
 
+/* refactor this below */
+
 /* articles */
 app.route({ url: '/v1/articles', method: 'GET', handler: ArticleControllers.fetchArticles });
 app.route({
@@ -54,6 +56,12 @@ app.route({
   method: 'POST',
   /* beforeHandler: jwt, */
   handler: UserControllers.createUser,
+});
+app.route({
+  url: '/v1/users',
+  method: 'DELETE',
+  /* beforeHandler: jwt, */
+  handler: UserControllers.deleteUser,
 });
 
 /* eslint-disable no-console */

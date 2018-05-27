@@ -1,5 +1,4 @@
 import mongoose from 'mongoose';
-import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 import User from '../models/User';
 
@@ -43,6 +42,14 @@ export const fetchUsers = async (request, reply) => {
 export const deleteUser = async (request, reply) => {
   try {
     const { id } = request.body;
+    if (!id) {
+      reply.send({ error: 'ID is required' });
+    }
+    const resp = await User.findByIdAndRemove(id);
+    reply.send({
+      user: resp,
+      message: 'Successfully deleted!',
+    });
   } catch (e) {
     reply.send(e);
   }
@@ -50,6 +57,21 @@ export const deleteUser = async (request, reply) => {
 
 export const editUser = async (request, reply) => {
   try {
+    /* probably route for admin panel. too many requried params */
+    const { id, firstName, lastName, password, role, phoneNumber, access, email } = request;
+
+    const editedProfile = {
+      firstName,
+      lastName,
+      password,
+      role,
+      phoneNumber,
+      access,
+      email,
+    };
+
+    const updatedUser = await User.findByIdAndUpdate(id, editedProfile);
+    reply.send(updatedUser);
   } catch (e) {
     reply.send(e);
   }
