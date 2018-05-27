@@ -1,10 +1,10 @@
-// @flow
 import fastify from 'fastify';
 import morgan from 'morgan';
 import cors from 'cors';
 import mongoose from 'mongoose';
 import responseTime from 'response-time';
 import config from '../config';
+import * as ArticleControllers from './controllers/Article';
 
 const app = fastify();
 
@@ -24,10 +24,15 @@ app.get('/', async (request, reply) => {
   }
 });
 
+app.route({ url: '/v1/articles', method: 'GET', handler: ArticleControllers.fetchArticles });
+app.route({ url: '/v1/articles', method: 'POST', handler: ArticleControllers.createArticle });
+
 /* eslint-disable no-console */
 app.listen(8081, () => {
   mongoose
-    .connect(`${config.URL}/test`)
+      .connect(config.URL, {
+      dbName: 'test',
+    })
     .then(() => {
       console.log('Connected to DB!');
       console.log('Server is running at port 8081');
