@@ -30,8 +30,10 @@ export const fetchArticles = async (request, reply) => {
 
 export const clearArticles = async (request, reply) => {
   try {
-    const response = await Article.remove();
-    reply.send(response);
+    await Article.remove();
+    reply.send({
+      message: 'All articles has been removed',
+    });
   } catch (e) {
     reply.send(e);
   }
@@ -42,10 +44,13 @@ export const deleteArticle = async (request, reply) => {
     const { id } = request.body;
     const article = await Article.findById(id);
     if (!article) {
-      reply.send({ error: 'Article not found' });
+      reply.code(404).send({ error: 'Article not found' });
     }
     const response = await article.remove();
-    reply.send(response);
+    reply.send({
+      message: 'Article has been removed',
+      article: response,
+    });
   } catch (e) {
     reply.send(e);
   }

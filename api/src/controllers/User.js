@@ -6,14 +6,12 @@ export const createUser = async (request, reply) => {
   try {
     const { firstName, lastName, email, password, role } = request.body;
     const hash = await bcrypt.hash(password, 15);
-
     const checkUser = await User.find({ email });
     if (checkUser.length > 0) {
       reply.send({
         message: 'This email already in use',
       });
     }
-
     const newUser = new User({
       _id: new mongoose.Types.ObjectId(),
       firstName,
@@ -61,7 +59,6 @@ export const editUser = async (request, reply) => {
   try {
     /* probably route for admin panel. too many requried params */
     const { id, firstName, lastName, password, role, phoneNumber, access, email } = request;
-
     const editedProfile = {
       firstName,
       lastName,
@@ -71,7 +68,6 @@ export const editUser = async (request, reply) => {
       access,
       email,
     };
-
     const updatedUser = await User.findByIdAndUpdate(id, editedProfile);
     reply.send(updatedUser);
   } catch (e) {
