@@ -13,6 +13,7 @@ const actions = {
     try {
       const { data } = await API().get('/v1/articles');
       commit('setArticles', data);
+      return data;
     } catch (e) {
       // for now
       throw new Error(`${e} : error`);
@@ -20,7 +21,7 @@ const actions = {
   },
 };
 const getters = {
-  articlesList: state => (state.articles ? state.articles : null),
+  articles: state => (state.articles ? state.articles : null),
 };
 
 export default {

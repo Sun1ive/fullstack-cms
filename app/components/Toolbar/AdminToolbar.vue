@@ -25,7 +25,7 @@ export default {
   data: () => ({
     adminMenu: [
       { title: 'Create Article', icon: 'star', path: '/admin/article/create' },
-      { title: 'Edit Article', icon: 'star', path: '/admin/article/edit' },
+      { title: 'Articles list', icon: 'star', path: '/admin/article/list' },
       { title: 'Create User', icon: 'star', path: '/admin/user/create' },
       { title: 'Users list', icon: 'star', path: '/admin/user/list' },
     ]
