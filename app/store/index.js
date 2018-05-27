@@ -1,13 +1,9 @@
 import Vuex from 'vuex';
+import articles from './modules/articles';
 
 export default () =>
   new Vuex.Store({
-    state: {
-      counter: 90,
-    },
-    mutations: {
-      increment(state, payload) {
-        state.counter += payload;
-      },
+    modules: {
+      articles,
     },
   });
