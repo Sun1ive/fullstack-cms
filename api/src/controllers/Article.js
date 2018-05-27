@@ -59,8 +59,9 @@ export const deleteArticle = async (request, reply) => {
 
 export const editArticle = async (request, reply) => {
   try {
-    const { id, title, articleBody } = request.body;
+    const { id, image, title, articleBody } = request.body;
     const edit = {
+      image, 
       title,
       articleBody,
     };

@@ -19,6 +19,19 @@ const actions = {
       throw new Error(`${e} : error`);
     }
   },
+  async editArticle(ctx, payload) {
+    try {
+      const { data } = await API().post('/v1/articles', {
+        id: payload.id,
+        image: payload.image,
+        title: payload.title,
+        articleBody: payload.articleBody,
+      });
+      console.log(data)
+    } catch (e) {
+      throw new Error(`${e}: error`);
+    }
+  },
 };
 const getters = {
   articles: state => (state.articles ? state.articles : null),
