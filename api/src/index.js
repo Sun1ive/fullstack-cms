@@ -5,6 +5,7 @@ import mongoose from 'mongoose';
 import responseTime from 'response-time';
 import config from '../config';
 import * as ArticleControllers from './controllers/Article';
+import * as UserControllers from './controllers/User';
 import jwt from './middleware';
 
 const app = fastify();
@@ -13,11 +14,47 @@ app.use(cors());
 app.use(morgan('dev'));
 app.use(responseTime());
 
+
+/* articles */
 app.route({ url: '/v1/articles', method: 'GET', handler: ArticleControllers.fetchArticles });
-app.route({ url: '/v1/articles', method: 'POST', handler: ArticleControllers.createArticle });
-app.route({ url: '/v1/articles', method: 'DELETE', handler: ArticleControllers.deleteArticle });
-app.route({ url: '/v1/articles', method: 'PATCH', handler: ArticleControllers.editArticle });
-app.route({ url: '/v1/articles/clear', method: 'POST', handler: ArticleControllers.editArticle });
+app.route({
+  url: '/v1/articles',
+  method: 'POST',
+  beforeHandler: jwt,
+  handler: ArticleControllers.createArticle,
+});
+app.route({
+  url: '/v1/articles',
+  method: 'DELETE',
+  beforeHandler: jwt,
+  handler: ArticleControllers.deleteArticle,
+});
+app.route({
+  url: '/v1/articles',
+  method: 'PATCH',
+  beforeHandler: jwt,
+  handler: ArticleControllers.editArticle,
+});
+app.route({
+  url: '/v1/articles/clear',
+  method: 'POST',
+  beforeHandler: jwt,
+  handler: ArticleControllers.editArticle,
+});
+
+/* user */
+app.route({
+  url: '/v1/users',
+  method: 'GET',
+  /* beforeHandler: jwt, */
+  handler: UserControllers.fetchUsers,
+});
+app.route({
+  url: '/v1/users',
+  method: 'POST',
+  /* beforeHandler: jwt, */
+  handler: UserControllers.createUser,
+});
 
 /* eslint-disable no-console */
 app.listen(8081, () => {
