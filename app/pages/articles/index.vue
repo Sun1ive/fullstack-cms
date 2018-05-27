@@ -22,9 +22,12 @@
   </v-container>
   <v-container v-else>
     <v-layout justify-center align-center>
-      <v-alert :value="true" type="warning">
-        <h1>There is no articles yet</h1>
-      </v-alert>
+      <v-flex xs6 class="text-xs-center">
+        <v-alert :value="true" type="warning">
+          <h1>There is no articles yet</h1>
+          <v-btn to="/" flat dark>Home page</v-btn>
+        </v-alert>
+      </v-flex>
     </v-layout>
   </v-container>
 </template>
@@ -52,10 +55,6 @@ export default {
 <style scoped>
 .article__title {
   text-transform: capitalize;
-}
-
-.article__body {
-
 }
 
 .article__breadcrumbs {

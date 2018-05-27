@@ -23,7 +23,7 @@ app.route({ url: '/v1/articles', method: 'GET', handler: ArticleControllers.fetc
 app.route({
   url: '/v1/articles',
   method: 'POST',
-  beforeHandler: jwt,
+  // beforeHandler: jwt,
   handler: ArticleControllers.createArticle,
 });
 app.route({

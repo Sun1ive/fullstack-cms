@@ -1,5 +1,5 @@
 <template>
-  <h2>edit article page</h2>
+  <h2>List of all articles page</h2>
 </template>
 
 <script>
