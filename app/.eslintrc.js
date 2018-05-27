@@ -8,8 +8,6 @@ module.exports = {
     parser: 'babel-eslint',
   },
   extends: [
-    // https://github.com/vuejs/eslint-plugin-vue#priority-a-essential-error-prevention
-    // consider switching to `plugin:vue/strongly-recommended` or `plugin:vue/recommended` for stricter rules.
     'airbnb-base',
     'prettier',
     'plugin:vue/strongly-recommended',
@@ -30,6 +28,7 @@ module.exports = {
     'vue/attribute-hyphenation': 0,
     'class-methods-use-this': 0,
     'import/no-extraneous-dependencies': 0,
-    'no-console': 0
+    'no-console': 0,
+    'no-underscore-dangle': 0
   },
 };

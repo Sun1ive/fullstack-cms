@@ -18,13 +18,13 @@
 
 <script>
 export default {
-  props: {
-    image: { type: String, required: true },
-    title: { type: String, required: true },
-    articleBody: { type: String, required: true },
-    author: { type: String, required: true },
-    timestamp: { type: String, required: true },
-  },
+  props: {},
+  data: () => ({
+    title: null,
+    image: null,
+    articleBody: null,
+    author: null,
+  }),
   methods: {
     async onSubmit() {
       try {
@@ -35,6 +35,9 @@ export default {
         throw new Error(`Error has occurred: ${e}`);
       }
     },
+  },
+  created() {
+    const article = this.$store.getters.articles.filter(i => i._id === this.id)
   },
 };
 </script>

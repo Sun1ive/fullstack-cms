@@ -19,7 +19,7 @@
         <v-card class="article__wrapper">
           <h1>Article title: {{ article.title }}</h1>
           <div class="flat__buttons">
-            <v-btn :to="article._id" fab flat><v-icon>edit</v-icon></v-btn>
+            <v-btn :to="article._id" nuxt fab flat><v-icon>edit</v-icon></v-btn>
             <v-btn fab flat><v-icon>delete</v-icon></v-btn>
           </div>
         </v-card>
