@@ -3,9 +3,10 @@ import Article from '../models/Article';
 
 export const createArticle = async (request, reply) => {
   try {
-    const { title, articleBody, author, timestamp } = request.body;
+    const { image, title, articleBody, author, timestamp } = request.body;
     const newArticle = new Article({
       _id: new mongoose.Types.ObjectId(),
+      image,
       title,
       articleBody,
       author,

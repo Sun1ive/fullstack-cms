@@ -41,8 +41,8 @@ app.route({
 app.route({
   url: '/v1/articles/clear',
   method: 'POST',
-  beforeHandler: jwt,
-  handler: ArticleControllers.editArticle,
+  // beforeHandler: jwt,
+  handler: ArticleControllers.clearArticles,
 });
 
 /* user */
