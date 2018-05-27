@@ -1,7 +1,16 @@
 <template>
   <v-container>
+    <v-layout justify-center align-center>
+      <v-flex xs10 sm6>
+        <v-text-field
+          v-model.trim.lazy="query"
+          prepend-icon="star"
+          label="Search input"
+        />
+      </v-flex>
+    </v-layout>
     <v-layout
-      v-for="article in articles"
+      v-for="article in filteredArticles"
       :key="article._id"
       justify-center
       align-center
@@ -23,15 +32,24 @@
 export default {
   data: () => ({
     articles: null,
+    query: null,
   }),
+  computed: {
+    filteredArticles() {
+      if (this.query) {
+        return this.articles.filter(i => i.title.toLowerCase().includes(this.query.toLowerCase()));
+      }
+      return this.articles;
+    },
+  },
   async created() {
     try {
       const articles = await this.$store.dispatch('fetchAllArticles');
       this.articles = articles;
     } catch (e) {
-      throw new Error(e)
+      throw new Error(e);
     }
-  }
+  },
 };
 </script>
 
