@@ -6,6 +6,7 @@ import responseTime from 'response-time';
 import config from '../config';
 import * as ArticleControllers from './controllers/Article';
 import * as UserControllers from './controllers/User';
+import auth from './controllers/Authorization'
 import jwt from './middleware';
 
 const app = fastify();
@@ -62,6 +63,15 @@ app.route({
   method: 'DELETE',
   /* beforeHandler: jwt, */
   handler: UserControllers.deleteUser,
+});
+
+
+/* authorization */
+app.route({
+  url: '/v1/auth',
+  method: 'POST',
+  /* beforeHandler: jwt, */
+  handler: auth,
 });
 
 /* eslint-disable no-console */

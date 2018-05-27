@@ -45,7 +45,9 @@ export const deleteUser = async (request, reply) => {
     if (!id) {
       reply.send({ error: 'ID is required' });
     }
-    const resp = await User.findByIdAndRemove(id);
+    const user = await User.findById(id);
+    if (!user) reply.code(404).send({ message: 'User not found' });
+    const resp = await user.remove();
     reply.send({
       user: resp,
       message: 'Successfully deleted!',
