@@ -27,7 +27,7 @@ export default {
       { title: 'Add Article', icon: 'star', path: '/admin/article/add' },
       { title: 'Edit Article', icon: 'star', path: '/admin/article/edit' },
       { title: 'Add User', icon: 'star', path: '/admin/user/add' },
-      { title: 'Edit User', icon: 'star', path: '/admin/user/edit' },
+      { title: 'Users list', icon: 'star', path: '/admin/user/list' },
     ]
   })
 };
