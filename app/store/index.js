@@ -1,6 +1,6 @@
 import Vuex from 'vuex';
 
-const createStore = () =>
+export default () =>
   new Vuex.Store({
     state: {
       counter: 90,
@@ -11,5 +11,3 @@ const createStore = () =>
       },
     },
   });
-
-export default createStore;

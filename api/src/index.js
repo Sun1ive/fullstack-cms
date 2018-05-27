@@ -27,7 +27,7 @@ app.get('/', async (request, reply) => {
 /* eslint-disable no-console */
 app.listen(8081, () => {
   mongoose
-    .connect(`${config.db.URL}/test`)
+    .connect(`${config.URL}/test`)
     .then(() => {
       console.log('Connected to DB!');
       console.log('Server is running at port 8081');

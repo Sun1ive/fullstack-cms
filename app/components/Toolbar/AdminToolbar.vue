@@ -24,13 +24,13 @@
 export default {
   data: () => ({
     adminMenu: [
-      { title: 'Add Article', icon: 'star', path: '/admin/add-article' },
-      { title: 'Edit Article', icon: 'star', path: '/admin/edit-article' },
+      { title: 'Add Article', icon: 'star', path: '/admin/article/add' },
+      { title: 'Edit Article', icon: 'star', path: '/admin/article/edit' },
     ]
   })
 };
 </script>
 
-<style>
+<style scoped>
 
 </style>
