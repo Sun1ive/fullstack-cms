@@ -29,6 +29,7 @@ export default {
     author: null,
   }),
   created() {
+    console.log(this.article)
     this.title = this.article.title;
     this.image = this.article.image;
     this.articleBody = this.article.articleBody;
@@ -37,7 +38,14 @@ export default {
   methods: {
     async onSubmit() {
       try {
-        await this.$store.dispatch('editArticle', {});
+        await this.$store.dispatch('editArticle', {
+          title: this.title,
+          image: this.image,
+          articleBody: this.articleBody,
+          atuhor: this.author,
+          id: this.article._id,
+        });
+        this.$router.push('/admin/article/list');
       } catch (e) {
         throw new Error(`Error has occurred: ${e}`);
       }

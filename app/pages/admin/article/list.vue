@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-layout justify-center align-center>
-      <v-flex xs10 sm6>
+      <v-flex xs10>
         <v-text-field
           v-model.trim.lazy="query"
           prepend-icon="star"
@@ -15,9 +15,13 @@
       justify-center
       align-center
     >
-      <v-flex xs10 sm6 class="my-2">
+      <v-flex xs11 sm10 class="my-2">
         <v-card class="article__wrapper">
           <h1>Article title: {{ article.title }}</h1>
+          <div>
+            <div>Author: {{ article.author }}</div>
+            <div>ID: {{ article._id }}</div>
+          </div>
           <div class="flat__buttons">
             <v-btn
               :to="{ name: 'admin-article-id', params: { article } }"

@@ -3,7 +3,9 @@
     <Toolbar />
     <v-content>
       <v-container fluid fill-height>
-        <nuxt />
+        <transition name="fade" mode="out-in">
+          <nuxt />
+        </transition>
       </v-container>
     </v-content>
   </v-app>
@@ -21,5 +23,11 @@ export default {
 .application.theme--light {
   background: url('~/static/bg.png') repeat;
   background-size: cover;
+}
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to  {
+  opacity: 0;
 }
 </style>

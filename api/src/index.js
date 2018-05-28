@@ -29,13 +29,13 @@ app.route({
 app.route({
   url: '/v1/articles',
   method: 'DELETE',
-  beforeHandler: jwt,
+  // beforeHandler: jwt,
   handler: ArticleControllers.deleteArticle,
 });
 app.route({
   url: '/v1/articles',
   method: 'PATCH',
-  beforeHandler: jwt,
+  // beforeHandler: jwt,
   handler: ArticleControllers.editArticle,
 });
 app.route({

@@ -3,7 +3,7 @@ export default async ctx => {
     if (ctx.store.state.articles.articles) {
       return ctx.store.state.articles.articles;
     }
-    const data = await ctx.store.dispatch('fetchAllArticles');
+    const data = await ctx.store.dispatch('fetchArticles');
     return data;
   } catch (e) {
     ctx.store.commit('setError', {

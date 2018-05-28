@@ -26,7 +26,7 @@ const actions = {
       throw new Error(`Error has occured ${e}`);
     }
   },
-  async fetchAllArticles({ commit }) {
+  async fetchArticles({ commit }) {
     try {
       const { data } = await API().get('/v1/articles');
       commit('setArticles', data);
@@ -39,15 +39,16 @@ const actions = {
       throw new Error(`Error has occured ${e}`);
     }
   },
-  async editArticle({ commit }, payload) {
+  async editArticle({ commit, dispatch }, payload) {
     try {
-      const { data } = await API().post('/v1/articles', {
+      await API().patch('/v1/articles', {
         id: payload.id,
         image: payload.image,
         title: payload.title,
         articleBody: payload.articleBody,
+        author: payload.author,
       });
-      console.log(data);
+      await dispatch('fetchArticles');
     } catch (e) {
       commit('setError', {
         errorState: true,

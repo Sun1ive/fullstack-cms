@@ -1,5 +1,10 @@
 <template>
   <v-container>
+    <v-layout justify-center>
+      <v-flex xs10 class="text-xs-center">
+        <h2>Create article page</h2>
+      </v-flex>
+    </v-layout>
     <v-layout justify-center align-center>
       <v-flex xs10 sm6 class="text-xs-center">
         <v-card>
