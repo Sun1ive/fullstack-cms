@@ -18,6 +18,14 @@
 
 <script>
 export default {
+  async asyncData(ctx) {
+    try {
+      console.log(ctx.store.state)
+    } catch (e) {
+      
+      throw new Error(e);
+    }
+  },
   props: {},
   data: () => ({
     title: null,
@@ -28,16 +36,11 @@ export default {
   methods: {
     async onSubmit() {
       try {
-        await this.$store.dispatch('editArticle', {
-          
-        })
+        await this.$store.dispatch('editArticle', {});
       } catch (e) {
         throw new Error(`Error has occurred: ${e}`);
       }
     },
-  },
-  created() {
-    const article = this.$store.getters.articles.filter(i => i._id === this.id)
   },
 };
 </script>

@@ -33,22 +33,18 @@
 </template>
 
 <script>
-import API from '../../axios';
+import fetchArticles from '../../utils/fetchArticles';
 
 export default {
-  async asyncData() {
-    try {
-      const { data } = await API().get('/v1/articles');
-      return { articles: data };
-    } catch (e) {
-      throw new Error(`Error has occured ${e}`);
-    }
+  async asyncData(ctx) {
+    const articles = await fetchArticles(ctx);
+    return { articles };
   },
   computed: {
     isArticles() {
-      return this.articles.length > 0
+      return this.articles.length > 0;
     },
-  }
+  },
 };
 </script>
 

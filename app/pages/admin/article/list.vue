@@ -29,9 +29,14 @@
 </template>
 
 <script>
+import fetchArticles from '../../../utils/fetchArticles';
+
 export default {
+  async asyncData(ctx) {
+    const articles = await fetchArticles(ctx);
+    return { articles };
+  },
   data: () => ({
-    articles: null,
     query: null,
   }),
   computed: {
@@ -41,14 +46,6 @@ export default {
       }
       return this.articles;
     },
-  },
-  async created() {
-    try {
-      const articles = await this.$store.dispatch('fetchAllArticles');
-      this.articles = articles;
-    } catch (e) {
-      throw new Error(e);
-    }
   },
 };
 </script>
