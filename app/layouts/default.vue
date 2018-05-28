@@ -18,5 +18,8 @@ export default {
 </script>
 
 <style>
-
+.application.theme--light {
+  background: url('~/static/bg.png') repeat;
+  background-size: cover;
+}
 </style>

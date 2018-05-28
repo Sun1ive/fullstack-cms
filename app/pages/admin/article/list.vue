@@ -15,15 +15,23 @@
       justify-center
       align-center
     >
-      <v-flex xs10 sm6>
+      <v-flex xs10 sm6 class="my-2">
         <v-card class="article__wrapper">
           <h1>Article title: {{ article.title }}</h1>
           <div class="flat__buttons">
-            <v-btn :to="{
-              name: 'admin-article-id',
-              params: { article }
-            }" nuxt fab flat><v-icon>edit</v-icon></v-btn>
-            <v-btn fab flat><v-icon>delete</v-icon></v-btn>
+            <v-btn
+              :to="{ name: 'admin-article-id', params: { article } }"
+              nuxt
+              exact
+              fab
+              flat
+              color="blue"
+            ><v-icon>edit</v-icon></v-btn>
+            <v-btn
+              fab
+              flat
+              color="red"
+            ><v-icon>delete</v-icon></v-btn>
           </div>
         </v-card>
       </v-flex>

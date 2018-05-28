@@ -8,7 +8,7 @@
             <v-text-field v-model.trim.lazy="title" clearable label="Title" />
             <v-text-field v-model.trim.lazy="articleBody" clearable multi-line label="Body" />
             <v-text-field v-model.trim.lazy="author" clearable label="Author" />
-            <v-btn type="submit">Create</v-btn>
+            <v-btn type="submit" color="primary">Create</v-btn>
           </v-form>
         </v-card>
       </v-flex>

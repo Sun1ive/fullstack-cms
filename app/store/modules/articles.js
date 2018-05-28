@@ -11,14 +11,13 @@ const mutations = {
 const actions = {
   async createArticle({ commit }, payload) {
     try {
-      const { data } = await API().post('/v1/articles', {
+      await API().post('/v1/articles', {
         image: payload.image,
         title: payload.title,
         articleBody: payload.articleBody,
         timestamp: payload.timestamp,
         author: payload.author,
       });
-      console.log(data);
     } catch (e) {
       commit('setError', {
         errorState: true,

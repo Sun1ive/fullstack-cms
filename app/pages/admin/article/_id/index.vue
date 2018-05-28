@@ -1,6 +1,9 @@
 <template>
   <v-container>
-    <Form :article="article" />
+    <Form
+      :article="article"
+      buttonText="Update"
+    />
   </v-container>
 </template>
 
