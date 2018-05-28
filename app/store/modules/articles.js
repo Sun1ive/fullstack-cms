@@ -9,17 +9,38 @@ const mutations = {
   },
 };
 const actions = {
+  async createArticle({ commit }, payload) {
+    try {
+      const { data } = await API().post('/v1/articles', {
+        image: payload.image,
+        title: payload.title,
+        articleBody: payload.articleBody,
+        timestamp: payload.timestamp,
+        author: payload.author,
+      });
+      console.log(data);
+    } catch (e) {
+      commit('setError', {
+        errorState: true,
+        errorMessage: e,
+      });
+      throw new Error(`Error has occured ${e}`);
+    }
+  },
   async fetchAllArticles({ commit }) {
     try {
       const { data } = await API().get('/v1/articles');
       commit('setArticles', data);
       return data;
     } catch (e) {
-      // for now
-      throw new Error(`${e} : error`);
+      commit('setError', {
+        errorState: true,
+        errorMessage: e,
+      });
+      throw new Error(`Error has occured ${e}`);
     }
   },
-  async editArticle(ctx, payload) {
+  async editArticle({ commit }, payload) {
     try {
       const { data } = await API().post('/v1/articles', {
         id: payload.id,
@@ -27,9 +48,13 @@ const actions = {
         title: payload.title,
         articleBody: payload.articleBody,
       });
-      console.log(data)
+      console.log(data);
     } catch (e) {
-      throw new Error(`${e}: error`);
+      commit('setError', {
+        errorState: true,
+        errorMessage: e,
+      });
+      throw new Error(`Error has occured ${e}`);
     }
   },
 };

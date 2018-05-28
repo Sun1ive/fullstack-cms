@@ -17,8 +17,6 @@
 </template>
 
 <script>
-import API from '../../../axios';
-
 export default {
   data: () => ({
     title: '',
@@ -30,15 +28,18 @@ export default {
   methods: {
     async onSubmit() {
       try {
-        const { data } = await API().post('/v1/articles', {
+        await this.$store.dispatch('createArticle', {
           image: this.image,
           title: this.title,
           articleBody: this.articleBody,
           timestamp: new Date().toLocaleString(),
           author: this.author,
         });
-        console.log(data);
       } catch (e) {
+        this.$store.commit('setError', {
+          errorState: true,
+          errorMessage: e,
+        });
         throw new Error(`Error has occured: ${e}`);
       }
     },

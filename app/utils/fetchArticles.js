@@ -10,7 +10,6 @@ export default async ctx => {
       errorState: true,
       errorMessage: e,
     });
-    console.log(e);
     throw new Error(`Error has occured ${e}`);
   }
 };

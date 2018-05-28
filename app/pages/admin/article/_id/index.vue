@@ -1,15 +1,17 @@
 <template>
   <v-container>
-    <!-- create dynamic form component like in create page -->
+    <Form :article="article" />
   </v-container>
 </template>
 
 <script>
+import Form from '../../../../components/Form/Form.vue';
+
 export default {
-
-}
+  asyncData({ params }) {
+    const { article } = params;
+    return { article };
+  },
+  components: { Form },
+};
 </script>
-
-<style>
-
-</style>

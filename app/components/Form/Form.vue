@@ -18,21 +18,21 @@
 
 <script>
 export default {
-  async asyncData(ctx) {
-    try {
-      console.log(ctx.store.state)
-    } catch (e) {
-      
-      throw new Error(e);
-    }
+  props: {
+    article: { type: Object, required: true },
   },
-  props: {},
   data: () => ({
     title: null,
     image: null,
     articleBody: null,
     author: null,
   }),
+  created() {
+    this.title = this.article.title;
+    this.image = this.article.image;
+    this.articleBody = this.article.articleBody;
+    this.author = this.article.author;
+  },
   methods: {
     async onSubmit() {
       try {
