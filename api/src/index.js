@@ -7,7 +7,7 @@ import config from '../config';
 import * as ArticleControllers from './controllers/Article';
 import * as UserControllers from './controllers/User';
 import auth from './controllers/Authorization'
-import jwt from './middleware';
+// import jwt from './middleware';
 
 const app = fastify();
 

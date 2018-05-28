@@ -7,7 +7,11 @@
     >
       <v-flex>
         <v-card>
-          <v-card-media :src="article.image" height="300" />
+          <v-card-media
+            :src="article.image"
+            height="300"
+            @click="$router.push({ name: 'articles-id', params: { id: article._id, article } })"
+          />
           <v-card-title class="article__title">
             <h1>{{ article.title }}</h1>
           </v-card-title>

@@ -4,8 +4,10 @@
 
 <script>
 export default {
-
-}
+  async asyncData({ params }) {
+    console.log(params);
+  },
+};
 </script>
 
 <style scoped>

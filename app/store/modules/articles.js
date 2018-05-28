@@ -57,6 +57,21 @@ const actions = {
       throw new Error(`Error has occured ${e}`);
     }
   },
+  async deleteArticle({ commit }, payload) {
+    try {
+      await API().delete('/v1/articles', {
+        params: {
+          id: payload.id,
+        },
+      });
+    } catch (e) {
+      commit('setError', {
+        errorState: true,
+        errorMessage: e.response.data,
+      });
+      throw new Error(`Error has occured ${e.response.data}`);
+    }
+  },
 };
 const getters = {
   articles: state => (state.articles ? state.articles : null),

@@ -42,7 +42,7 @@ export const clearArticles = async (request, reply) => {
 
 export const deleteArticle = async (request, reply) => {
   try {
-    const { id } = request.body;
+    const { id } = request.query;
     const article = await Article.findById(id);
     if (!article) {
       reply.code(404).send({ error: 'Article not found' });
@@ -61,7 +61,7 @@ export const editArticle = async (request, reply) => {
   try {
     const { id, image, title, articleBody } = request.body;
     const edit = {
-      image, 
+      image,
       title,
       articleBody,
     };

@@ -35,6 +35,7 @@
               fab
               flat
               color="red"
+              @click="onDelete(article._id)"
             ><v-icon>delete</v-icon></v-btn>
           </div>
         </v-card>
@@ -60,6 +61,12 @@ export default {
         return this.articles.filter(i => i.title.toLowerCase().includes(this.query.toLowerCase()));
       }
       return this.articles;
+    },
+  },
+  methods: {
+    async onDelete(id) {
+      await this.$store.dispatch('deleteArticle', { id });
+      // 123
     },
   },
 };

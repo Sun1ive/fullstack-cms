@@ -1,5 +1,13 @@
 <template>
   <v-container>
+    <v-layout>
+      <v-snackbar
+        :timeout="2000"
+        v-model="snackbar"
+        top
+        color="green"
+      >Success</v-snackbar>
+    </v-layout>
     <v-layout justify-center>
       <v-flex xs10 class="text-xs-center">
         <h2>Create article page</h2>
@@ -11,7 +19,7 @@
           <v-form class="myForm" @submit.prevent="onSubmit">
             <v-text-field v-model.trim.lazy="image" clearable label="Image" />
             <v-text-field v-model.trim.lazy="title" clearable label="Title" />
-            <v-text-field v-model.trim.lazy="articleBody" clearable multi-line label="Body" />
+            <v-text-field v-model.trim.lazy="articleBody" multi-line label="Body" />
             <v-text-field v-model.trim.lazy="author" clearable label="Author" />
             <v-btn type="submit" color="primary">Create</v-btn>
           </v-form>
@@ -29,6 +37,7 @@ export default {
     articleBody: '',
     timestamp: '',
     author: '',
+    snackbar: false,
   }),
   methods: {
     async onSubmit() {
@@ -40,6 +49,10 @@ export default {
           timestamp: new Date().toLocaleString(),
           author: this.author,
         });
+        this.snackbar = true;
+        setTimeout(() => {
+          this.$router.push('/admin/article/list');
+        }, 2000);
       } catch (e) {
         this.$store.commit('setError', {
           errorState: true,

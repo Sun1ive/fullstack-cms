@@ -29,11 +29,14 @@ export default {
     author: null,
   }),
   created() {
-    console.log(this.article)
-    this.title = this.article.title;
-    this.image = this.article.image;
-    this.articleBody = this.article.articleBody;
-    this.author = this.article.author;
+    if (this.article) {
+      this.title = this.article.title;
+      this.image = this.article.image;
+      this.articleBody = this.article.articleBody;
+      this.author = this.artcile.author;
+    } else {
+      this.$router.push('/');
+    }
   },
   methods: {
     async onSubmit() {
