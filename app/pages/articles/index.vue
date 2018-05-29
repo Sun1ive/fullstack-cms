@@ -1,7 +1,15 @@
 <template>
   <v-container v-if="isArticles">
+    <v-layout>
+      <v-snackbar
+        :timeout="3000"
+        v-model="snackbar"
+        top
+        color="green"
+      >Success</v-snackbar>
+    </v-layout>
     <v-layout
-      v-for="article in articles"
+      v-for="article in articlesList"
       :key="article._id"
       class="my-3"
       justify-center
@@ -28,6 +36,19 @@
               <span>Date: {{ article.timestamp }}</span>
             </div>
           </v-card-text>
+          <v-card-actions>
+            <v-btn
+              fab
+              dark
+              color="blue"
+            ><v-icon large>edit</v-icon></v-btn>
+            <v-btn
+              fab
+              dark
+              color="red"
+              @click="onDeleteArticle(article._id)"
+            ><v-icon large>remove</v-icon></v-btn>
+          </v-card-actions>
         </v-card>
       </v-flex>
     </v-layout>
@@ -54,16 +75,27 @@
 <script>
 export default {
   async asyncData({ store }) {
-    // maybe need to check store first, but on the other hand there might be new articles;
-    if (store.getters.articles) {
-      return { articles: store.getters.articles };
-    }
     const articles = await store.dispatch('fetchArticles');
     return { articles };
   },
+  data: () => ({
+    dialog: false,
+    confirm: false,
+    snackbar: false,
+  }),
   computed: {
     isArticles() {
       return this.articles.length > 0;
+    },
+    articlesList() {
+      return this.articles;
+    },
+  },
+  methods: {
+    async onDeleteArticle(id) {
+      this.$store.commit('editArticles', id);
+      // await this.$store.dispatch('deleteArticle', { id });
+      this.snackbar = true;
     },
   },
 };
@@ -87,5 +119,8 @@ export default {
 .article__image:hover {
   cursor: pointer;
   transform: scale(1.01);
+}
+.card__actions {
+  justify-content: flex-end;
 }
 </style>

@@ -46,3 +46,19 @@ export const fetchArticles = async (req: express.Request, res: express.Response)
     });
   }
 };
+
+export const deleteArticle = async (req: express.Request, res: express.Response) => {
+  try {
+    const { id } = req.query;
+    const response = await Article.findByIdAndRemove(id);
+    res.status(200).json({
+      message: 'Article has been removed',
+      article: response,
+    });
+  } catch (e) {
+    res.status(403).json({
+      message: 'Wrong data',
+      error: e,
+    });
+  }
+};
