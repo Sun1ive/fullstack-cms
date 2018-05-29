@@ -74,7 +74,7 @@ const actions = {
   },
 };
 const getters = {
-  articles: state => (state.articles ? state.articles : null),
+  articles: state => state.articles
 };
 
 export default {
