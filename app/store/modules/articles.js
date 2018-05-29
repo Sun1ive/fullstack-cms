@@ -74,10 +74,9 @@ const actions = {
   },
   async incrementViews({ commit }, payload) {
     try {
-      const resp = await API().post('/v1/articles/view', {
+      await API().post('/v1/articles/view', {
         id: payload.id,
-      })
-      console.log('---', resp);
+      });
     } catch (e) {
       commit('setError', {
         errorState: true,
@@ -85,7 +84,7 @@ const actions = {
       });
       throw new Error(`Error has occured ${e.response.data}`);
     }
-  }
+  },
 };
 const getters = {
   articles: state => state.articles,

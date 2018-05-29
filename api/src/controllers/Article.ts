@@ -63,7 +63,26 @@ export const deleteArticle = async (req: express.Request, res: express.Response)
   }
 };
 
-export const editArticle = async (req: express.Request, res: express.Response) => {};
+export const editArticle = async (req: express.Request, res: express.Response) => {
+  try {
+    const { title, articleBody, id, image, author } = req.body;
+    const article = await Article.findByIdAndUpdate(id, {
+      title,
+      articleBody,
+      image,
+      author,
+    });
+    res.status(200).json({
+      message: 'Article was successfully updated',
+      article,
+    });
+  } catch (e) {
+    res.status(403).json({
+      message: 'Bad data has been sent',
+      error: e,
+    });
+  }
+};
 
 export const incrementView = async (req: express.Request, res: express.Response) => {
   try {

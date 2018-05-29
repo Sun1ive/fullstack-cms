@@ -7,5 +7,6 @@ router.get('/', articleControllers.fetchArticles);
 router.post('/', articleControllers.createArticle);
 router.delete('/', articleControllers.deleteArticle);
 router.post('/view', articleControllers.incrementView);
+router.patch('/', articleControllers.editArticle);
 
 export default router;

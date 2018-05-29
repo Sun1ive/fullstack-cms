@@ -1,64 +1,56 @@
 <template>
   <v-container v-if="isArticles">
-    <v-layout>
+    <v-layout justify-center>
       <v-snackbar
-        :timeout="3000"
+        :timeout="2000"
         v-model="snackbar"
         top
-        color="green"
+        color="blue"
       >Success</v-snackbar>
     </v-layout>
-    <v-layout
-      v-for="article in articlesList"
-      :key="article._id"
-      class="my-3"
-      justify-center
-      align-center
-      wrap
+    <transition-group
+      tag="article"
+      name="list"
+      mode="out-in"
     >
-      <v-flex xs11>
-        <v-card class="article">
-          <div class="article__image__wrapper">
-            <v-card-media
-              :src="article.image"
-              height="300"
-              class="article__image"
-              @click="viewArticle(article)"
-            />
-          </div>
-          <v-card-text
-            @click="viewArticle(article)"
-          >
-            <h1>{{ article.title }}</h1>
-          </v-card-text>
-          <v-card-text>
-            <p>{{ article.articleBody }}</p>
-            <div class="article__info">
-              <div>
-                <span><v-icon class="mr-2">visibility</v-icon>{{ article.views }}</span>
-              </div>
-              <div class="article__publication">
-                <span>Author: {{ article.author }}</span>
-                <span>Date: {{ article.timestamp }}</span>
-              </div>
+      <v-layout
+        v-for="article in articlesList"
+        :key="article._id"
+        justify-center
+        align-center
+        class="my-3"
+      >
+        <v-flex xs11>
+          <v-card class="article">
+            <div class="article__image__wrapper">
+              <v-card-media
+                :src="article.image"
+                height="300"
+                class="article__image"
+                @click="viewArticle(article)"
+              />
             </div>
-          </v-card-text>
-          <v-card-actions v-if="false">
-            <v-btn
-              fab
-              dark
-              color="blue"
-            ><v-icon large>edit</v-icon></v-btn>
-            <v-btn
-              fab
-              dark
-              color="red"
-              @click="onDeleteArticle(article._id)"
-            ><v-icon large>remove</v-icon></v-btn>
-          </v-card-actions>
-        </v-card>
-      </v-flex>
-    </v-layout>
+            <v-card-text
+              @click="viewArticle(article)"
+            >
+              <h1>{{ article.title }}</h1>
+            </v-card-text>
+            <v-card-text>
+              <p>{{ article.articleBody }}</p>
+              <div class="article__info">
+                <div>
+                  <span><v-icon class="mr-2">visibility</v-icon>{{ article.views }}</span>
+                </div>
+                <div class="article__publication">
+                  <span>Author: {{ article.author }}</span>
+                  <span>Date: {{ article.timestamp }}</span>
+                </div>
+              </div>
+            </v-card-text>
+          </v-card>
+        </v-flex>
+      </v-layout>
+    </transition-group>
   </v-container>
   <NoArticles v-else />
 </template>
@@ -87,11 +79,8 @@ export default {
   },
   methods: {
     async onDeleteArticle(id) {
-      /* eslint-disable-next-line */
-      this.articles = this.articles.reduce((acc, next) => {
-        if (next._id !== id) acc.push(next);
-        return acc;
-      }, []);
+      const ids = this.articles.map(i => i._id);
+      this.articles.splice(ids.indexOf(id), 1);
       // await this.$store.dispatch('deleteArticle', { id });
       this.snackbar = true;
     },
@@ -133,5 +122,12 @@ h1 {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+.list-enter-active, .list-leave-active {
+  transition: all 1s;
+}
+.list-enter, .list-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
 }
 </style>
