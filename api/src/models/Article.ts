@@ -1,6 +1,6 @@
 import * as mongoose from 'mongoose';
 
-const { Schema, model } = mongoose;
+const { Schema } = mongoose;
 
 const Article = new Schema({
   _id: Schema.Types.ObjectId,
@@ -12,4 +12,4 @@ const Article = new Schema({
   views: { type: Number, default: 0 },
 });
 
-export default model('Article', Article);
+export default mongoose.model('Article', Article);
