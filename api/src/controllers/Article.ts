@@ -62,3 +62,19 @@ export const deleteArticle = async (req: express.Request, res: express.Response)
     });
   }
 };
+
+export const editArticle = async (req: express.Request, res: express.Response) => {};
+
+export const incrementView = async (req: express.Request, res: express.Response) => {
+  try {
+    const { id } = req.body;
+    const article = await Article.findById(id).lean();
+    article.views += 1;
+    await Article.findByIdAndUpdate(id, article);
+  } catch (e) {
+    res.status(403).json({
+      message: 'Error has occurred',
+      error: e,
+    });
+  }
+};

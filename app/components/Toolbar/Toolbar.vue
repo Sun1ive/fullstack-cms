@@ -22,8 +22,8 @@ export default {
   components: { AdminMenu },
   data: () => ({
     toolbarMenu: [
-      { title: 'Home', path: '/', icon: 'star' },
-      { title: 'Articles', path: '/articles', icon: 'star' },
+      { title: 'Home', path: '/', icon: 'home' },
+      { title: 'Articles', path: '/articles', icon: 'list' },
     ]
   }),
 };

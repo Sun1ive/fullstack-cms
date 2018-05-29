@@ -6,5 +6,6 @@ const router = express.Router();
 router.get('/', articleControllers.fetchArticles);
 router.post('/', articleControllers.createArticle);
 router.delete('/', articleControllers.deleteArticle);
+router.post('/view', articleControllers.incrementView);
 
 export default router;

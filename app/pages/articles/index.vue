@@ -23,20 +23,27 @@
               :src="article.image"
               height="300"
               class="article__image"
-              @click="$router.push({ name: 'articles-id', params: { id: article._id, article } })"
+              @click="viewArticle(article)"
             />
           </div>
-          <v-card-text>
+          <v-card-text
+            @click="viewArticle(article)"
+          >
             <h1>{{ article.title }}</h1>
           </v-card-text>
           <v-card-text>
             <p>{{ article.articleBody }}</p>
-            <div class="article__publication">
-              <span>Author: {{ article.author }}</span>
-              <span>Date: {{ article.timestamp }}</span>
+            <div class="article__info">
+              <div>
+                <span><v-icon class="mr-2">visibility</v-icon>{{ article.views }}</span>
+              </div>
+              <div class="article__publication">
+                <span>Author: {{ article.author }}</span>
+                <span>Date: {{ article.timestamp }}</span>
+              </div>
             </div>
           </v-card-text>
-          <v-card-actions>
+          <v-card-actions v-if="false">
             <v-btn
               fab
               dark
@@ -53,31 +60,18 @@
       </v-flex>
     </v-layout>
   </v-container>
-  <v-container v-else>
-    <v-layout justify-center>
-      <v-flex xs10 sm6 class="text-xs-center">
-        <v-alert :value="true" type="warning">
-          <h1>There is no articles yet</h1>
-          <v-btn
-            to="/"
-            nuxt
-            exact
-            flat
-            dark
-            color="blue"
-          >Home</v-btn>
-        </v-alert>
-      </v-flex>
-    </v-layout>
-  </v-container>
+  <NoArticles v-else />
 </template>
 
 <script>
+import NoArticles from '../../components/Articles/NotFound.vue';
+
 export default {
   async asyncData({ store }) {
     const articles = await store.dispatch('fetchArticles');
     return { articles };
   },
+  components: { NoArticles },
   data: () => ({
     dialog: false,
     confirm: false,
@@ -93,15 +87,29 @@ export default {
   },
   methods: {
     async onDeleteArticle(id) {
-      this.$store.commit('editArticles', id);
+      /* eslint-disable-next-line */
+      this.articles = this.articles.reduce((acc, next) => {
+        if (next._id !== id) acc.push(next);
+        return acc;
+      }, []);
       // await this.$store.dispatch('deleteArticle', { id });
       this.snackbar = true;
+    },
+    viewArticle(article) {
+      this.$router.push({
+        name: 'articles-id',
+        params: { id: article._id, article },
+      });
+      this.$store.dispatch('incrementViews', { id: article._id });
     },
   },
 };
 </script>
 
 <style scoped>
+h1 {
+  cursor: pointer;
+}
 .article__publication span {
   display: block;
   font-weight: bold;
@@ -111,16 +119,19 @@ export default {
 .article__image__wrapper {
   overflow: hidden;
 }
-
 .article__image {
   transition: 0.3s;
 }
-
 .article__image:hover {
   cursor: pointer;
   transform: scale(1.01);
 }
 .card__actions {
   justify-content: flex-end;
+}
+.article__info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 </style>

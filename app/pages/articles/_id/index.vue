@@ -1,6 +1,16 @@
 <template>
   <!-- <h1>Refactor this</h1> -->
   <v-container>
+    <v-layout justify-center>
+      <v-flex xs10 class="text-xs-center">
+        <v-btn
+          fab
+          color="primary"
+          dark
+          to="/articles"
+        ><v-icon>arrow_back</v-icon></v-btn>
+      </v-flex>
+    </v-layout>
     <v-layout>
       <v-flex>
         <v-card>
