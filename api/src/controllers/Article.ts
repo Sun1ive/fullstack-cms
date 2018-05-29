@@ -9,6 +9,7 @@ interface Article {
   author: string;
   timestamp: string;
   views?: number;
+  id?: string;
 }
 
 export const createArticle = async (req: express.Request, res: express.Response) => {
@@ -65,7 +66,7 @@ export const deleteArticle = async (req: express.Request, res: express.Response)
 
 export const editArticle = async (req: express.Request, res: express.Response) => {
   try {
-    const { title, articleBody, id, image, author } = req.body;
+    const { title, articleBody, id, image, author }: Article = req.body;
     const article = await Article.findByIdAndUpdate(id, {
       title,
       articleBody,

@@ -47,6 +47,7 @@ export default {
         articleBody: this.articleBody,
         author: this.author,
       });
+      this.$router.push('/');
     },
   },
 };

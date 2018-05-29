@@ -30,9 +30,7 @@
                 @click="viewArticle(article)"
               />
             </div>
-            <v-card-text
-              @click="viewArticle(article)"
-            >
+            <v-card-text @click="viewArticle(article)">
               <h1>{{ article.title }}</h1>
             </v-card-text>
             <v-card-text>
