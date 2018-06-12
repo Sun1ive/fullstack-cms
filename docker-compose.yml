@@ -22,9 +22,8 @@ services:
   api:
     image: node:10
     restart: always
-    environment:
-      - HOST=0.0.0.0
-      - PORT=8081
+    ports:
+    - "8081:8081"
     volumes:
     - ./api:/usr/api
     command: /bin/bash -c "cd /usr/api && npm i && npm run build && npm start"
