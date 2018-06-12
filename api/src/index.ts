@@ -16,6 +16,8 @@ app.use(responseTime());
 
 app.use('/v1/articles', articleRoutes);
 
+mongoose.set('debug', true);
+
 app.listen(config.PORT, () => {
   mongoose
     .connect(config.mlabURL)
