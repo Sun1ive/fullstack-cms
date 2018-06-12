@@ -49,13 +49,13 @@ module.exports = {
   */
 
   router: {
-    // extendRoutes(routes, resolve) {
-    //   routes.push({
-    //     name: 'error',
-    //     path: '*',
-    //     component: resolve(__dirname, 'pages/404.vue'),
-    //   });
-    // },
+    extendRoutes(routes, resolve) {
+      routes.push({
+        name: 'error',
+        path: '*',
+        component: resolve(__dirname, 'pages/404.vue'),
+      });
+    },
   },
 
   /*

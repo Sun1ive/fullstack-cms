@@ -5,6 +5,7 @@ interface DB {
   URL: string;
   jwtKey: string;
   PORT: number;
+  HOST: string;
   mlabURL: string;
 }
 
@@ -16,6 +17,7 @@ class DB implements DB {
     this.URL = 'mongodb://192.168.44.129:3001';
     this.jwtKey = 'Secret';
     this.PORT = 8081;
+    this.HOST = '127.0.0.1';
     this.mlabURL = 'mongodb://sunlive:265718@ds139690.mlab.com:39690/fullstack-cms';
   }
 }
