@@ -10,27 +10,24 @@ services:
     ports:
     - "80:80"
     - "443:443"
-    depends_on:
-    - app
-  app:
-    image: node:10
-    restart: always
-    environment:
-      - HOST=0.0.0.0
-      - PORT=3000
-    volumes:
-    - ./app:/usr/app
-    command: /bin/bash -c "cd /usr/app && npm i && npm run build && npm start"
-    depends_on:
-    - api
+  #   depends_on:
+  #   - app
+  # app:
+  #   image: node:10
+  #   restart: always
+  #   environment:
+  #     - HOST=0.0.0.0
+  #     - PORT=3000
+  #   volumes:
+  #   - ./app:/usr/app
+  #   command: /bin/bash -c "cd /usr/app && npm i && npm run build && npm start"
+  #   depends_on:
+  #   - api
   api:
     image: node:10
     restart: always
-    environment:
-      - HOST=0.0.0.0
-      - PORT=1337
     ports:
-    - "1337:1337"
+    - "1337:8081"
     volumes:
     - ./api:/usr/api
     command: /bin/bash -c "cd /usr/api && npm i && npm run build && npm start"

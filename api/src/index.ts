@@ -18,10 +18,9 @@ app.use('/v1/articles', articleRoutes);
 
 mongoose.set('debug', true);
 
-const host = process.env.HOST || '127.0.0.1';
-const port = parseInt(process.env.PORT, 0) || 8081;
+app.get('/', (req, res) => res.send('<h1>Hello world</h1>'));
 
-app.listen(port, host, () => {
+app.listen(config.PORT, () => {
   mongoose
     .connect(config.mlabURL)
     .then(() => {
