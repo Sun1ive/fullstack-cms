@@ -9,8 +9,9 @@ services:
     - ./nginx/ssl:/etc/nginx/ssl
     ports:
     - "80:80"
+    - "443:443"
     depends_on:
-    - api
+    - app
   app:
     image: node:10
     restart: always
@@ -20,11 +21,16 @@ services:
     volumes:
     - ./app:/usr/app
     command: /bin/bash -c "cd /usr/app && npm i && npm run build && npm start"
+    depends_on:
+    - api
   api:
     image: node:10
     restart: always
+    environment:
+      - HOST=0.0.0.0
+      - PORT=1337
     ports:
-    - "8081:8081"
+    - "1337:1337"
     volumes:
     - ./api:/usr/api
     command: /bin/bash -c "cd /usr/api && npm i && npm run build && npm start"
