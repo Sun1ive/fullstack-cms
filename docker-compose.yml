@@ -6,6 +6,7 @@ services:
     restart: always
     volumes:
     - ./nginx/config:/etc/nginx/conf.d
+    - ./nginx/ssl:/etc/nginx/ssl
     ports:
     - "80:80"
     depends_on:
